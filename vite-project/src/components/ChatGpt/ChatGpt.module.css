@@ -51,10 +51,10 @@
 
 
 
-  .user-text {
-    color: blue;
+  .user {
+    color: rgb(48, 170, 241);
   }
   
-  .bot-text {
-    color: green;
+  .bot {
+    color: rgb(4, 177, 4);
   }

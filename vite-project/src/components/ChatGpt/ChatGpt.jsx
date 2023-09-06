@@ -24,10 +24,10 @@ export default function ChatGpt({ }) {
         e.preventDefault();
      
       
-        setMessages(messages => [...messages, { role: "User" , text: inputValue}]);
+        setMessages(messages => [...messages, { role: "user" , text: inputValue}]);
         setInputValue('');
         const aiResponse = await aiService.send({message: inputValue});
-        setMessages(messages => [...messages, {role: "Bot", text: aiResponse.reply}]);
+        setMessages(messages => [...messages, {role: "bot", text: aiResponse.reply}]);
       
     }
 
@@ -37,7 +37,7 @@ export default function ChatGpt({ }) {
         <div className={styles['chatGpt-container']}>
             <section>
                 {messages.map((message, index) => (
-                    <p key={index} > <strong className={message.role === "user" ? `style["user-text"]` : `style["bot-text"]`}>{message.role}:</strong> {message.text}</p>
+                    <p key={index} className={styles[`${message.role}`]} > <strong>{message.role.toUpperCase()}:</strong> {message.text}</p>
                 ))}
             </section>
 
