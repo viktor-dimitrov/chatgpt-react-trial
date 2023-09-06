@@ -1,20 +1,48 @@
 
+import { useEffect, useState } from "react"
+
+export default function ChatGpt({ }) {
+
+    const [inputValue, setInputValue] = useState('');
+    const [messages, setMessages] = useState([]);
+
+    useEffect(() => {
+        console.log(messages);
+    }, [messages])
 
 
-export default function ChatGpt() {
+    const onInputValueChange = (e) => {
+        setInputValue(e.target.value)
+    }
 
-
-
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
+        setMessages(messages => [...messages, inputValue]);
+        setInputValue('');
+    }
 
     return (
 
-        <>
-        <h1>ChatGPT</h1>
-        
+        <div>
+            <section>
+                {messages.map((message, index) => (
+                    <p key={index}>{message}</p>
+                ))}
+            </section>
 
-        <form onSubmit={onSubmit} method="POST"></form>
+            <form onSubmit={onSubmitHandler} >
+                <div>
+                    <input
+                        type="text"
+                        name="msg"
+                        id="msg"
+                        value={inputValue}
+                        onChange={onInputValueChange}
+                    />
+                    <input type="submit" value="Send" />
+                </div>
+            </form>
 
-
-        </>
+        </div>
     )
 }
