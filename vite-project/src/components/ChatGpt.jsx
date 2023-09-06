@@ -1,7 +1,10 @@
 
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+import { aiServiceFactory } from "../services/aiService";
 
 export default function ChatGpt({ }) {
+
+    const aiService = aiServiceFactory();
 
     const [inputValue, setInputValue] = useState('');
     const [messages, setMessages] = useState([]);
@@ -15,12 +18,18 @@ export default function ChatGpt({ }) {
         setInputValue(e.target.value)
     }
 
-    const onSubmitHandler = (e) => {
+    const onSubmitHandler = async (e) => {
         e.preventDefault();
+     
+      
         setMessages(messages => [...messages, inputValue]);
         setInputValue('');
+        const aiResponse = await aiService.send({message: inputValue});
+        setMessages(messages => [...messages, aiResponse.reply]);
+      
     }
 
+    
     return (
 
         <div>
