@@ -37,7 +37,7 @@ export default function ChatGpt({ }) {
         <div className={styles['chatGpt-container']}>
             <section>
                 {messages.map((message, index) => (
-                    <p key={index} className={styles[`${message.role}`]} > <strong>{message.role.toUpperCase()}:</strong> {message.text}</p>
+                    <article key={index} className={styles[`${message.role}`]} > <strong>{message.role.toUpperCase()}:</strong> <p> {message.text} </p></article>
                 ))}
             </section>
 
