@@ -1,6 +1,8 @@
 
 import { useEffect, useState, useRef } from "react";
 import { aiServiceFactory } from "../../services/aiService";
+import moment from "moment";
+import monkeyPic from "../../assets/monkey.jpg"
 
 import styles from "./ChatGpt.module.css";
 
@@ -12,6 +14,8 @@ export default function ChatGpt({ }) {
     const [messages, setMessages] = useState([{role: "bot", text: 'Good Day Commander'}]);
     const [isLoading, setIsLoading] = useState(false);
     const sectionRef = useRef(null);
+    const date = moment().format("MMM Do YY");
+    const hour = moment().format("HH:mm");
 
     useEffect(() => {
 
@@ -47,14 +51,22 @@ export default function ChatGpt({ }) {
 
         <div className={styles['chatGpt-container']}>
 
-             <header></header>
+             
+                <div className={styles['left']}>
+                    <div className={styles['loader-container']}>Loading</div>
+                    <div className={styles['img-container']}>
+                       <img src={monkeyPic} alt="monkey" />
+                    </div>
+                </div>
+
+           
     
             <section ref={sectionRef}>
                 {messages.map((message, index) => (
                     <div className={styles[`${message.role}`]}>
-                                 {message.role === "bot" && ( <div className={styles["line"]}><p>time</p></div>)}
+                                 {message.role === "bot" && ( <div className={styles["line"]}> <p>&nbsp;  {date} &nbsp;</p> <p className={styles["br"]} ></p> <p>{hour}</p> </div>)}
                     <article key={index} className={styles[`${message.role}`]} >  <p> {message.text} </p></article>
-                                {message.role === "user" && ( <div className={styles["line"]}> <p>time</p> </div>)}
+                                {message.role === "user" && ( <div className={styles["line"]}> <p>&nbsp;  {date} &nbsp;</p> <p className={styles["br"]} ></p> <p>{hour}</p> </div>)}
                     </div>
                 ))}
               {isLoading &&  <h1>Loading...</h1>}
