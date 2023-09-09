@@ -6,20 +6,31 @@
     display: flex;
     flex-direction: column;
 
+
 }
+
+
+ header {
+    height: 20px;
+    background-color: aliceblue;
+    margin-right: 10rem;
+ }
   
   section {
-   
-    background-color: rgb(212, 202, 143);
+ 
+    background-color:#242424;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     overflow-y: auto; 
-    padding: 1rem 4rem 0rem 4rem;
+    padding: 2rem 0rem 0rem 0rem;
+    margin:0 1rem;
+    border-left: 3px solid aqua;
+    border-right: 3px solid rgb(206, 235, 81);
   }
 
   .chatGpt-container section p {
-    margin-bottom: 2rem; 
+  
   }
   
   form {
@@ -44,24 +55,52 @@
     padding:  1rem;
   }
 
+
+
+
+  .line {
+    
+    /* width: 60px; */
+    height: 20px;
+    border-top: 3px solid aqua;
+  }
+
   article {
-    width:85%;
+    display:inline;
+  
     padding:0.2rem 1rem;
     margin-bottom: 1rem;
     border-radius: 1rem;
 
   }
 
+  section>div{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+  }
+  section>div.user {
+    justify-content: flex-end;
+    margin-left: auto;
+  }
+
+  section>div.user .line {
+    border-top: 3px solid rgb(206, 235, 81);
+  }
+
   
 
-  .user {
+   .user article{
     background-color: rgba(134, 216, 27, 0.452);
     border-color: 2px solid rgb(233, 152, 152);
     color: rgb(204, 217, 224);
-    margin-left:auto;
+    border: 3px solid rgb(206, 235, 81);
+ 
   }
-  
-  .bot {
+  .bot article{
     background-color: rgba(240, 255, 255, 0.486);
     color: rgb(3, 46, 3);
+    border: 3px solid aqua;
   }

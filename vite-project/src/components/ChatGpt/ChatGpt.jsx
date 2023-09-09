@@ -9,7 +9,8 @@ export default function ChatGpt({ }) {
     const aiService = aiServiceFactory();
 
     const [inputValue, setInputValue] = useState('');
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState([{role: "bot", text: 'Good Day Commander'}]);
+    const [isLoading, setIsLoading] = useState(false);
     const sectionRef = useRef(null);
 
     useEffect(() => {
@@ -29,14 +30,14 @@ export default function ChatGpt({ }) {
         e.preventDefault();
         setMessages(messages => [...messages, { role: "user" , text: inputValue}]);
         setInputValue('');
+        setIsLoading(true);
         const aiResponse = await aiService.send({message: inputValue});
         setMessages(messages => [...messages, {role: "bot", text: aiResponse.reply}]);
+        setIsLoading(false);
     }
 
     const onPressEnterHandler = (e) => {
-        console.log(e.key)
         if (e.key === "Enter") {
-            e.preventDefault(); 
             onSubmitHandler(e); 
           }
     }
@@ -45,14 +46,23 @@ export default function ChatGpt({ }) {
     return (
 
         <div className={styles['chatGpt-container']}>
+
+             <header></header>
+    
             <section ref={sectionRef}>
                 {messages.map((message, index) => (
-                    <article key={index} className={styles[`${message.role}`]} > <strong>{message.role.toUpperCase()}:</strong> <p> {message.text} </p></article>
+                    <div className={styles[`${message.role}`]}>
+                                 {message.role === "bot" && ( <div className={styles["line"]}><p>time</p></div>)}
+                    <article key={index} className={styles[`${message.role}`]} >  <p> {message.text} </p></article>
+                                {message.role === "user" && ( <div className={styles["line"]}> <p>time</p> </div>)}
+                    </div>
                 ))}
+              {isLoading &&  <h1>Loading...</h1>}
             </section>
 
+     
+
             <form onSubmit={onSubmitHandler} >
-              
                     <textarea
                         type="text"
                         name="msg"
@@ -62,7 +72,6 @@ export default function ChatGpt({ }) {
                         onKeyDown={onPressEnterHandler}
                     />
                     <input type="submit" value="Send" />
-               
             </form>
 
         </div>
