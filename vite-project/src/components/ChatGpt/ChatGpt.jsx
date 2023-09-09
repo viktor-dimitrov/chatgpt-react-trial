@@ -3,8 +3,9 @@ import { useEffect, useState, useRef } from "react";
 import { aiServiceFactory } from "../../services/aiService";
 import moment from "moment";
 import monkeyPic from "../../assets/monkey.jpg"
-
 import styles from "./ChatGpt.module.css";
+
+import Loader from "../Loader/Loader";
 
 export default function ChatGpt({ }) {
 
@@ -53,15 +54,18 @@ export default function ChatGpt({ }) {
 
              
                 <div className={styles['left']}>
-                    <div className={styles['loader-container']}>Loading</div>
+               
                     <div className={styles['img-container']}>
                        <img src={monkeyPic} alt="monkey" />
                     </div>
+                {isLoading &&  <div className={styles['loader-container']}> <Loader/> </div>}
+                   
                 </div>
 
            
     
             <section ref={sectionRef}>
+      
                 {messages.map((message, index) => (
                     <div className={styles[`${message.role}`]}>
                                  {message.role === "bot" && ( <div className={styles["line"]}> <p>&nbsp;  {date} &nbsp;</p> <p className={styles["br"]} ></p> <p>{hour}</p> </div>)}
@@ -69,7 +73,7 @@ export default function ChatGpt({ }) {
                                 {message.role === "user" && ( <div className={styles["line"]}> <p>&nbsp;  {date} &nbsp;</p> <p className={styles["br"]} ></p> <p>{hour}</p> </div>)}
                     </div>
                 ))}
-              {isLoading &&  <h1>Loading...</h1>}
+             
             </section>
 
      
