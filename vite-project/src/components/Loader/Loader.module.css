@@ -12,7 +12,9 @@
     position: absolute;
     left: 8px;
     width: 16px;
-    background: #fff;
+    background: #e7e1e1;
+    border: 1px solid aqua;
+    box-shadow: 0px 0px 20px  aqua;
     animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
   }
   .lds-facebook div:nth-child(1) {
