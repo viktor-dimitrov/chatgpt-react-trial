@@ -173,5 +173,20 @@
   }
 
 
+  .speech{
+    text-align: left;
+  }
 
 
+
+article button {
+    background-color: transparent;
+    border: none;
+    color: aqua;
+    text-shadow: 0px 0px 20px  rgb(206, 235, 81);
+}
+
+
+article button:hover{
+    cursor:pointer
+    }

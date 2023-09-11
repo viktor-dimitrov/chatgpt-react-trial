@@ -84,9 +84,9 @@ export default function ChatGpt({ }) {
                     <article key={index} className={styles[`${message.role}`]} > 
                         <p> {message.text} </p> 
                      
-                      
+                      <div className={styles['speech']}>
                        <Speech text={message.text} startBtn={startBtn} stopBtn={stopBtn} pitch={1} rate={2}/> 
-                        
+                    </div>
                        </article>
                                 {message.role === "user" && ( <div className={styles["line"]}> <p>&nbsp;  {date} &nbsp;</p> <p className={styles["br"]} ></p> <p>{hour}</p> </div>)}
                     </div>
