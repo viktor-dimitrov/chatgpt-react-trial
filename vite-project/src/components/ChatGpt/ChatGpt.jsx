@@ -10,6 +10,7 @@ import styles from "./ChatGpt.module.css";
 
 import Loader from "../Loader/Loader";
 
+
 export default function ChatGpt({ }) {
 
     const aiService = aiServiceFactory();
@@ -20,6 +21,8 @@ export default function ChatGpt({ }) {
     const sectionRef = useRef(null);
     const date = moment().format("MMM Do YY");
     const hour = moment().format("HH:mm");
+
+   
 
     useEffect(() => {
 
@@ -53,6 +56,9 @@ export default function ChatGpt({ }) {
           }
     }
 
+    const startBtn = <button class='my-start-btn'> <i class="fa-solid fa-volume-low"></i> </button>
+    const stopBtn = <button class='my-stop-btn'> <i class="fa-solid fa-volume-xmark"></i> </button>
+
     
     return (
 
@@ -75,7 +81,13 @@ export default function ChatGpt({ }) {
                 {messages.map((message, index) => (
                     <div key={index} className={styles[`${message.role}`]}>
                                  {message.role === "bot" && ( <div className={styles["line"]}> <p>&nbsp;  {date} &nbsp;</p> <p className={styles["br"]} ></p> <p>{hour}</p> </div>)}
-                    <article key={index} className={styles[`${message.role}`]} >  <p> {message.text} </p>  <Speech text={message.text} pitch={1} rate={2}/>  </article>
+                    <article key={index} className={styles[`${message.role}`]} > 
+                        <p> {message.text} </p> 
+                     
+                      
+                       <Speech text={message.text} startBtn={startBtn} stopBtn={stopBtn} pitch={1} rate={2}/> 
+                        
+                       </article>
                                 {message.role === "user" && ( <div className={styles["line"]}> <p>&nbsp;  {date} &nbsp;</p> <p className={styles["br"]} ></p> <p>{hour}</p> </div>)}
                     </div>
                 ))}
