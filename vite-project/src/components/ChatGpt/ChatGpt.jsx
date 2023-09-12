@@ -9,6 +9,7 @@ import monkeyPic from "../../assets/monkey.jpg"
 import styles from "./ChatGpt.module.css";
 
 import Loader from "../Loader/Loader";
+import ChatForm from "../ChatForm/ChatForm";
 
 
 export default function ChatGpt({ }) {
@@ -17,94 +18,67 @@ export default function ChatGpt({ }) {
     const date = moment().format("MMM Do YY");
     const hour = moment().format("HH:mm");
 
-    const [inputValue, setInputValue] = useState('');
-    const [messages, setMessages] = useState([{date: date, hour: hour, role: "bot", text: 'My name is Viktor Dimitroff, what you want to know?'}]);
+    const [messages, setMessages] = useState([{ date: date, hour: hour, role: "bot", text: 'My name is Viktor Dimitroff, what you want to know?' }]);
     const [isLoading, setIsLoading] = useState(false);
     const sectionRef = useRef(null);
 
-
-   
 
     useEffect(() => {
 
         if (sectionRef.current) {
             sectionRef.current.scrollTop = sectionRef.current.scrollHeight;
-          }
+        }
 
     }, [messages])
 
 
-    const onInputValueChange = (e) => {
-        setInputValue(e.target.value)
-    }
-
-    const onSubmitHandler = async (e) => {
-        e.preventDefault();
-        if (inputValue.length < 2) {
-            return
-        }
-        setMessages(messages => [...messages, {date: date, hour: hour, role: "user" , text: inputValue}]);
-        setInputValue('');
+    const messageHandler = async (message) => {
+        setMessages(messages => [...messages, { date: date, hour: hour, role: "user", text: message }]);
         setIsLoading(true);
-        const aiResponse = await aiService.send({message: inputValue});
-        setMessages(messages => [...messages, {date: date, hour: hour, role: "bot", text: aiResponse.reply}]);
+        const aiResponse = await aiService.send({ message: message });
+        setMessages(messages => [...messages, { date: date, hour: hour, role: "bot", text: aiResponse.reply }]);
         setIsLoading(false);
     }
 
-    const onPressEnterHandler = (e) => {
-        if (e.key === "Enter") {
-            onSubmitHandler(e); 
-          }
-    }
 
     const startBtn = <button class='my-start-btn'> <i class="fa-solid fa-volume-low"></i> </button>
     const stopBtn = <button class='my-stop-btn'> <i class="fa-solid fa-volume-xmark"></i> </button>
 
-    
+
     return (
 
         <div className={styles['chatGpt-container']}>
 
-                <div className={styles['left']}>
-                    <div className={styles['img-container']}>
-                       <img src={monkeyPic} alt="monkey" />
-                    </div>
-                {isLoading &&  <div className={styles['loader-container']}> <Loader/> </div>}
+            <div className={styles['left']}>
+                <div className={styles['img-container']}>
+                    <img src={monkeyPic} alt="monkey" />
                 </div>
+                {isLoading && <div className={styles['loader-container']}> <Loader /> </div>}
+            </div>
 
-           
-    
+
+
             <section ref={sectionRef}>
-      
+
                 {messages.map((message, index) => (
                     <div key={index} className={styles[`${message.role}`]}>
-                                 {message.role === "bot" && ( <div className={styles["line"]}> <p>&nbsp;  {message.date} &nbsp;</p> <p className={styles["br"]} ></p> <p>{message.hour}</p> </div>)}
-                    <article key={index} className={styles[`${message.role}`]} > 
-                        <p> {message.text} </p> 
-                     
-                      <div className={styles['speech']}>
-                       <Speech text={message.text} startBtn={startBtn} stopBtn={stopBtn} pitch={1} rate={2}/> 
-                    </div>
-                       </article>
-                                {message.role === "user" && ( <div className={styles["line"]}> <p>&nbsp;  {message.date} &nbsp;</p> <p className={styles["br"]} ></p> <p>{message.hour}</p> </div>)}
+                        {message.role === "bot" && (<div className={styles["line"]}> <p>&nbsp;  {message.date} &nbsp;</p> <p className={styles["br"]} ></p> <p>{message.hour}</p> </div>)}
+                        <article key={index} className={styles[`${message.role}`]} >
+                            <p> {message.text} </p>
+
+                            <div className={styles['speech']}>
+                                <Speech text={message.text} startBtn={startBtn} stopBtn={stopBtn} pitch={1} rate={2} />
+                            </div>
+                        </article>
+                        {message.role === "user" && (<div className={styles["line"]}> <p>&nbsp;  {message.date} &nbsp;</p> <p className={styles["br"]} ></p> <p>{message.hour}</p> </div>)}
                     </div>
                 ))}
-             
+
             </section>
 
-     
 
-            <form onSubmit={onSubmitHandler} >
-                    <textarea
-                        type="text"
-                        name="msg"
-                        id="msg"
-                        value={inputValue}
-                        onChange={onInputValueChange}
-                        onKeyDown={onPressEnterHandler}
-                    />
-                    <input type="submit" value="Send" />
-            </form>
+            <ChatForm messageHandler={messageHandler} />
+
 
         </div>
     )
