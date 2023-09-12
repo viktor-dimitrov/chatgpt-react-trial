@@ -14,13 +14,14 @@ import Loader from "../Loader/Loader";
 export default function ChatGpt({ }) {
 
     const aiService = aiServiceFactory();
-
-    const [inputValue, setInputValue] = useState('');
-    const [messages, setMessages] = useState([{role: "bot", text: 'My name is Viktor Dimitroff, what you want to know?'}]);
-    const [isLoading, setIsLoading] = useState(false);
-    const sectionRef = useRef(null);
     const date = moment().format("MMM Do YY");
     const hour = moment().format("HH:mm");
+
+    const [inputValue, setInputValue] = useState('');
+    const [messages, setMessages] = useState([{date: date, hour: hour, role: "bot", text: 'My name is Viktor Dimitroff, what you want to know?'}]);
+    const [isLoading, setIsLoading] = useState(false);
+    const sectionRef = useRef(null);
+
 
    
 
@@ -42,11 +43,11 @@ export default function ChatGpt({ }) {
         if (inputValue.length < 2) {
             return
         }
-        setMessages(messages => [...messages, { role: "user" , text: inputValue}]);
+        setMessages(messages => [...messages, {date: date, hour: hour, role: "user" , text: inputValue}]);
         setInputValue('');
         setIsLoading(true);
         const aiResponse = await aiService.send({message: inputValue});
-        setMessages(messages => [...messages, {role: "bot", text: aiResponse.reply}]);
+        setMessages(messages => [...messages, {date: date, hour: hour, role: "bot", text: aiResponse.reply}]);
         setIsLoading(false);
     }
 
@@ -64,14 +65,11 @@ export default function ChatGpt({ }) {
 
         <div className={styles['chatGpt-container']}>
 
-             {console.log(Speech)}
                 <div className={styles['left']}>
-               
                     <div className={styles['img-container']}>
                        <img src={monkeyPic} alt="monkey" />
                     </div>
                 {isLoading &&  <div className={styles['loader-container']}> <Loader/> </div>}
-                   
                 </div>
 
            
@@ -80,7 +78,7 @@ export default function ChatGpt({ }) {
       
                 {messages.map((message, index) => (
                     <div key={index} className={styles[`${message.role}`]}>
-                                 {message.role === "bot" && ( <div className={styles["line"]}> <p>&nbsp;  {date} &nbsp;</p> <p className={styles["br"]} ></p> <p>{hour}</p> </div>)}
+                                 {message.role === "bot" && ( <div className={styles["line"]}> <p>&nbsp;  {message.date} &nbsp;</p> <p className={styles["br"]} ></p> <p>{message.hour}</p> </div>)}
                     <article key={index} className={styles[`${message.role}`]} > 
                         <p> {message.text} </p> 
                      
@@ -88,7 +86,7 @@ export default function ChatGpt({ }) {
                        <Speech text={message.text} startBtn={startBtn} stopBtn={stopBtn} pitch={1} rate={2}/> 
                     </div>
                        </article>
-                                {message.role === "user" && ( <div className={styles["line"]}> <p>&nbsp;  {date} &nbsp;</p> <p className={styles["br"]} ></p> <p>{hour}</p> </div>)}
+                                {message.role === "user" && ( <div className={styles["line"]}> <p>&nbsp;  {message.date} &nbsp;</p> <p className={styles["br"]} ></p> <p>{message.hour}</p> </div>)}
                     </div>
                 ))}
              
