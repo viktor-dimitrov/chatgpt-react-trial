@@ -36,14 +36,23 @@ export default function ChatGpt({ }) {
     const messageHandler = async (message) => {
         setMessages(messages => [...messages, { time:{date: date, hour: hour}, role: "user", text: message }]);
         setIsLoading(true);
-        const aiResponse = await aiService.send({ message: message });
-        setMessages(messages => [...messages, { time:{date: date, hour: hour}, role: "bot", text: aiResponse.reply }]);
+
+        let response = '';
+        try{
+            const aiResponse = await aiService.send({ message: message });
+            response = aiResponse.reply
+        }catch(error){
+         
+            response = "Sorry, but I can't write now ";
+        }
+
+        setMessages(messages => [...messages, { time:{date: date, hour: hour}, role: "bot", text: response }]);
         setIsLoading(false);
     }
 
 
-    const startBtn = <button class='my-start-btn'> <i class="fa-solid fa-volume-low"></i> </button>
-    const stopBtn = <button class='my-stop-btn'> <i class="fa-solid fa-volume-xmark"></i> </button>
+    const startBtn = <button className='my-start-btn'> <i className="fa-solid fa-volume-low"></i> </button>
+    const stopBtn = <button className='my-stop-btn'> <i className="fa-solid fa-volume-xmark"></i> </button>
 
 
     return (
