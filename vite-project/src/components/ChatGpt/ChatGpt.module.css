@@ -40,7 +40,6 @@
  }
 
  .loader-container {
-   
     position: absolute;
     top: 100%;
     left:50%;
@@ -67,24 +66,8 @@
   }
 
 
-  .line {
-    
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 1rem;
-  flex-shrink: 0;
 
-  }
 
-  .line .br {
-    width: 10rem;
-    border-bottom:3px solid aqua;
-  }
-
-  section>div.user .br {
-    border-bottom:3px solid rgb(206, 235, 81);
-  }
 
   article {
     display:inline;
@@ -124,6 +107,7 @@
   }
 
 
+
   .speech{
     text-align: left;
   }
@@ -135,6 +119,10 @@ article button {
     border: none;
     color: aqua;
     text-shadow: 0px 0px 20px  rgb(206, 235, 81);
+}
+
+article.user button {
+  color:rgb(206, 235, 81);
 }
 
 
