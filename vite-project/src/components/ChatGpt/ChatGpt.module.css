@@ -44,7 +44,7 @@
  .loader-container {
     position: relative;
     bottom: 5%;
-    left:50%;
+    left:80%;
 
     transform: translate(-50%, -50%);
     z-index: 2;
@@ -166,6 +166,16 @@ article button:hover{
         padding:0.5rem;
         
       }
+
+      .loader-container {
+        width:20%;
+        position: relative;
+        top: 20%;
+        left:0%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+     }
+
 
 
 
