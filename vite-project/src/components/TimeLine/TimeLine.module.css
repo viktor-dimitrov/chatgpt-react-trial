@@ -17,3 +17,25 @@
     width: 10rem;
     border-bottom: 3px solid rgb(206, 235, 81);
 }
+
+
+
+@media (max-width: 600px) {
+
+
+    .line p {
+        font-size: 0.3rem;
+    }
+
+    .line .bot {
+        width: 100%;
+    }
+
+    .line .user {
+        width: 100%;
+   
+    }
+
+
+
+}

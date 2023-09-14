@@ -16,7 +16,7 @@ import TimeLine from "../TimeLine/TimeLine";
 export default function ChatGpt({ }) {
 
     const aiService = aiServiceFactory();
-    const date = moment().format("MMM Do YY");
+    const date = moment().format("DD.mm.YY");
     const hour = moment().format("HH:mm");
 
     const [messages, setMessages] = useState([{ time: {date: date, hour: hour}, role: "bot", text: 'My name is Viktor Dimitroff, what you want to know?' }]);
@@ -82,7 +82,7 @@ export default function ChatGpt({ }) {
                             <p> {message.text} </p>
 
                             <div className={styles['speech']}>
-                                <Speech text={message.text} startBtn={startBtn} stopBtn={stopBtn} pitch={1} rate={3} />
+                                <Speech text={message.text} startBtn={startBtn} stopBtn={stopBtn} pitch={1} rate={5} />
                             </div>
 
                         </article>
