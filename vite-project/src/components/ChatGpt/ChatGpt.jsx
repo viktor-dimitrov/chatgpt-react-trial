@@ -19,7 +19,7 @@ export default function ChatGpt({ }) {
     const date = moment().format("DD.mm.YY");
     const hour = moment().format("HH:mm");
 
-    const [messages, setMessages] = useState([{ time: {date: date, hour: hour}, role: "bot", text: 'My name is Viktor Dimitroff, what you want to know?' }]);
+    const [messages, setMessages] = useState([{ time: {date: date, hour: hour}, role: "bot", text: 'Viktor Dimitroff ordered me to answer you, so ask me whatever you want!' }]);
     const [isLoading, setIsLoading] = useState(false);
     const sectionRef = useRef(null);
 
@@ -43,7 +43,7 @@ export default function ChatGpt({ }) {
             response = aiResponse.reply
         }catch(error){
          
-            response = "Sorry, but I can't write now ";
+            response = "I'm busy right now, try again in a minute.";
         }
 
         setMessages(messages => [...messages, { time:{date: date, hour: hour}, role: "bot", text: response }]);
