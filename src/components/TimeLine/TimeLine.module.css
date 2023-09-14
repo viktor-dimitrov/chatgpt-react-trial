@@ -1,0 +1,19 @@
+
+.line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+}
+
+
+.line .bot {
+    width: 10rem;
+    border-bottom: 3px solid aqua;
+}
+
+.line .user {
+    width: 10rem;
+    border-bottom: 3px solid rgb(206, 235, 81);
+}
