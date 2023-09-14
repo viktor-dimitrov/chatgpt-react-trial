@@ -59,16 +59,21 @@ export default function ChatGpt({ }) {
 
         <div className={styles['chatGpt-container']}>
 
-            <div className={styles['left']}>
-                <div className={styles['img-container']}>
-                    <img src={monkeyPic} alt="monkey" />
-                </div>
-                {isLoading && <div className={styles['loader-container']}> <Loader /> </div>}
-            </div>
+
 
 
 
             <section ref={sectionRef}>
+
+            <div className={styles['left']}>
+                <div className={styles['img-container']}>
+                    <img src={monkeyPic} alt="monkey" />
+                      
+                {isLoading && <div className={styles['loader-container']}> <Loader /> </div>}
+                </div>
+            
+           
+            </div>
 
                 {messages.map((message, index) => (
                     <div key={index} className={styles[`${message.role}`]}>
@@ -77,7 +82,7 @@ export default function ChatGpt({ }) {
                             <p> {message.text} </p>
 
                             <div className={styles['speech']}>
-                                <Speech text={message.text} startBtn={startBtn} stopBtn={stopBtn} pitch={1} rate={2} />
+                                <Speech text={message.text} startBtn={startBtn} stopBtn={stopBtn} pitch={1} rate={3} />
                             </div>
 
                         </article>
@@ -85,10 +90,11 @@ export default function ChatGpt({ }) {
                     </div>
                 ))}
 
+        
             </section>
 
-
             <ChatForm messageHandler={messageHandler} />
+   
 
 
         </div>

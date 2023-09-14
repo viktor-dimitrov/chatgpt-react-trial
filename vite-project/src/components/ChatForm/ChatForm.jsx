@@ -35,6 +35,7 @@ export default function ChatForm({ messageHandler }) {
                 type="text"
                 name="msg"
                 id="msg"
+                rows="1"
                 value={inputValue}
                 onChange={onInputValueChange}
                 onKeyDown={onPressEnterHandler}
