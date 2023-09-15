@@ -17,6 +17,7 @@
     "moment-timezone": "^0.5.43",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.16.0",
     "react-text-to-speech": "^0.4.2"
   },
   "devDependencies": {
