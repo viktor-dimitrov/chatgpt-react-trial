@@ -1,4 +1,4 @@
-Ето README.md файл, който можете да добавите в репозитория на вашия проект:
+
 
 ```markdown
 # ChatGPT React Trial
@@ -94,5 +94,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 Happy chatting!
 ```
-
-Копирайте този текст и го добавете във вашия README.md файл в репозитория на проекта.
