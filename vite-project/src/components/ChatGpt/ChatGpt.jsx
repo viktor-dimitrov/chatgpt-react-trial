@@ -89,8 +89,6 @@ export default function ChatGpt({ }) {
                         {message.role === "user" && <TimeLine role={message.role} time={message.time} /> }
                     </div>
                 ))}
-
-        
             </section>
 
             <ChatForm messageHandler={messageHandler} />

@@ -45,14 +45,12 @@
     position: relative;
     bottom: 5%;
     left:80%;
-
     transform: translate(-50%, -50%);
     z-index: 2;
  }
 
   
   section {
-  
     text-shadow: aqua 1px 0 10px;
     display: flex;
     flex-direction: column;
@@ -62,7 +60,6 @@
     border-left: 3px solid aqua;
     border-top: 3px solid aqua;
     border-right: 3px solid rgb(206, 235, 81);
- 
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
     position:relative;
@@ -71,8 +68,6 @@
   section::-webkit-scrollbar{
     display: none;
   }
-
-
 
 
 
