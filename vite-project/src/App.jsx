@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 
 
 import ChatGpt from './components/ChatGpt/ChatGpt'
 import './App.css'
+import Home from './components/Home/Home';
 
 function App() {
   
@@ -11,10 +13,19 @@ function App() {
 
 
   return (
-    <>
-     <ChatGpt/> 
 
-    </>
+    <BrowserRouter>
+      <>
+
+      <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/chatgpt" element={<ChatGpt />} />
+        
+        </Routes>
+
+      </>
+
+    </BrowserRouter>
   )
 }
 
