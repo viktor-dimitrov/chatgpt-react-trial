@@ -11,7 +11,10 @@ export default function Navigation () {
 
         <li>
             <Link to="/chatgpt"> Try ChatGPT 3.5 turbo </Link>
-        
+        </li>
+
+        <li>
+            <Link to="/chatroom"> Chat Room </Link>
         </li>
         
         
