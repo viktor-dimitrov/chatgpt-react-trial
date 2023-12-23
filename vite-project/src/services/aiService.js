@@ -1,6 +1,6 @@
 import { requestFactory } from './requester';
 
-   const baseUrl = 'http://localhost:3000/ai';
+   const baseUrl = 'http://localhost:3000/chatgpt';
 
 //  const baseUrl ='https://capricious-diagnostic-crepe.glitch.me/ai';
 

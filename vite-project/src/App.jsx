@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import io from 'socket.io-client';
+
 
 
 import ChatGpt from './components/ChatGpt/ChatGpt'
