@@ -7,7 +7,7 @@ import './App.css'
 
 import ChatGpt from './components/ChatGpt/ChatGpt'
 import Home from './components/Home/Home';
-import Message from './components/Message/Message';
+
 import ChatRoom from './components/ChatRoom/ChatRoom';
 
 

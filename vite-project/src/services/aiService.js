@@ -1,6 +1,6 @@
-import { requestFactory } from './requester';
+import { get, post, put, del } from './requester';
 
-   const baseUrl = 'http://localhost:3000/chatgpt';
+   const url = '/chatgpt';
 
 //  const baseUrl ='https://capricious-diagnostic-crepe.glitch.me/ai';
 
@@ -9,10 +9,8 @@ import { requestFactory } from './requester';
 
 export const aiServiceFactory = () => {
 
-    const request = requestFactory();
-
     const send = async (message) => {
-        const result = await request.post(baseUrl, message);
+        const result = await post(url, message);
 
         console.log(result);
     

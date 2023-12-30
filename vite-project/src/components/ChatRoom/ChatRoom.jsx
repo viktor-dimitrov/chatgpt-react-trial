@@ -1,40 +1,48 @@
-import { useEffect, useState } from "react";
 import io from 'socket.io-client';
-
+import { useEffect, useState } from "react";
+import { enterChatRoom } from "../../services/chatService";
 
 import Message from "../Message/Message";
 
 
-const socket = io('http://localhost:3000');
 
+// 
+const socket = io('http://localhost:3000');
 
 export default function ChatRoom () {
 
+   
 
     const [messages, setMessages] = useState([]);
     const [messageText, setMessageText] = useState('');
   
     useEffect(() => {
+     
+        
+      socket.on('reciveMessage', handleNewMessage);
   
-      const handleNewMessage = (message) => {
-        setMessages((prevMessages) => [...prevMessages, message]);
-      };
-      socket.on('message', handleNewMessage);
-  
-    return () => {
-      // При размонтиране на компонента, премахваме слушателя
-      socket.off('message', handleNewMessage);
-    };
+
+      return (
+        ()=> {  socket.on('disconnect', () => {
+         
+          });}
+      )
+
       
     }, []);
   
     const sendMessage = () => {
       const newMessage = { text: messageText }; 
-      setMessages((prevMessages) => [...prevMessages, newMessage]);
+    //   setMessages((prevMessages) => [...prevMessages, newMessage]);
       socket.emit('sendMessage', { text: messageText });
       setMessageText('');
      
     };
+
+    const handleNewMessage = (message) => {
+        setMessages((prevMessages) => [...prevMessages, message]);
+      };
+
 
 
     return(
