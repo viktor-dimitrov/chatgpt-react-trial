@@ -1,16 +1,16 @@
 import Navigation from "../Navigation/Navigation"
 
-
+import styles from "./Home.module.css";
 
 export default function Home () {
 
 
     return (
 
-        <>
-        <h1>Home Page</h1>
+        <div className={styles['home']}>
+        <h1>Welcome</h1>
         <Navigation/>
-        </>
+        </div>
 
     )
 }
