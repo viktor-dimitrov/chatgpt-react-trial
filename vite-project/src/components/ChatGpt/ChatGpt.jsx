@@ -43,7 +43,7 @@ export default function ChatGpt({ }) {
             response = aiResponse.reply
         }catch(error){
          
-            response = "I'm busy right now, try again in a minute.";
+            response = `${error.error} `;
         }
 
         setMessages(messages => [...messages, { time:{date: date, hour: hour}, role: "bot", text: response }]);
