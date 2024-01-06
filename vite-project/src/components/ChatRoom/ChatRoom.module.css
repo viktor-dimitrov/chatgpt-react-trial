@@ -1,0 +1,25 @@
+
+
+.chat-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position:relative;
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+  
+
+
+}
+
+.modal-container {
+    background-color: red;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+   
+  
+}

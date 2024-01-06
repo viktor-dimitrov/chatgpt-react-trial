@@ -42,7 +42,7 @@ export default function ChatForm({ messageHandler }) {
                 onKeyDown={onPressEnterHandler}
             />
 
-            <button onClick={() => onSubmitHandler()}><i className="fa-solid fa-arrow-right-from-bracket"></i></button>
+            <button type="submit"><i className="fa-solid fa-arrow-right-from-bracket"></i></button>
 
             
            
